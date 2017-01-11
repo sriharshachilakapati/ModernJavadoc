@@ -1,6 +1,8 @@
 apply plugin: 'java'
 
+evaluationDependsOn(":modernjavadoc")
+
 javadoc {
-    options.docletpath = configurations.doclet.files.asType(List)
+    options.docletpath = configurations.doclet.files as List
     options.doclet = 'com.shc.modernjavadoc.ModernDoclet'
 }
