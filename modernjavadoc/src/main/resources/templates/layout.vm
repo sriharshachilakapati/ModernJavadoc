@@ -1,0 +1,11 @@
+#macro(layout $title)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>$title - $windowTitle</title>
+</head>
+<body>
+    $!bodyContent
+</body>
+</html>
+#end
