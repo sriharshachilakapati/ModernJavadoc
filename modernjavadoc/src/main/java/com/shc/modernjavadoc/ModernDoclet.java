@@ -1,11 +1,10 @@
 package com.shc.modernjavadoc;
 
-import com.sun.javadoc.ClassDoc;
-import com.sun.javadoc.ConstructorDoc;
+import com.sun.javadoc.DocErrorReporter;
 import com.sun.javadoc.Doclet;
-import com.sun.javadoc.MethodDoc;
-import com.sun.javadoc.PackageDoc;
 import com.sun.javadoc.RootDoc;
+
+import java.io.File;
 
 /**
  * @author Sri Harsha Chilakapati
@@ -14,35 +13,59 @@ public class ModernDoclet extends Doclet
 {
     public static boolean start(RootDoc root)
     {
-        PackageDoc pkg = null;
+        readOptions(root.options());
 
-        for (ClassDoc klass : root.classes())
+        return true;
+    }
+
+    private static void readOptions(String[][] options)
+    {
+        for (String[] args : options)
         {
-            String pkgName = klass.qualifiedName().replaceAll("\\." + klass.typeName(), "");
-            PackageDoc pkg1 = root.packageNamed(pkgName);
-
-            if (pkg == null || !pkg.name().equals(pkg1.name()))
+            switch (args[0])
             {
-                pkg = pkg1;
-                System.out.println("Package " + pkg.name());
-            }
+                case "-d":
+                    Configuration.DEST_DIR = new File(args[1]);
+                    break;
 
-            System.out.println("  > Class " + klass.simpleTypeName());
+                case "-doctitle":
+                    Configuration.TITLE = args[1];
+                    break;
 
-            ConstructorDoc[] constructors = klass.constructors();
-            for (ConstructorDoc ctor : constructors)
-            {
-                System.out.println("    > Ctor " + ctor.name());
-                System.out.println("      > " + ctor.flatSignature());
-            }
-
-            MethodDoc[] methods = klass.methods();
-            for (MethodDoc method : methods)
-            {
-                System.out.println("    > Method " + method.name());
-                System.out.println("      > " + method.flatSignature());
+                case "-windowtitle":
+                    Configuration.WINDOW_TITLE = args[1];
+                    break;
             }
         }
+    }
+
+    public static boolean validOptions(String[][] options, DocErrorReporter reporter)
+    {
+        String[] required = {
+                "-d",          // Destination dir
+                "-doctitle",   // Document title
+                "-windowtitle" // Window title
+        };
+
+        boolean[] found = new boolean[required.length];
+
+        for (String[] args : options)
+        {
+            for (int i = 0; i < required.length; i++)
+            {
+                String opt = required[i];
+
+                if (args[0].equals(opt))
+                    found[i] = true;
+            }
+        }
+
+        for (int i = 0; i < found.length; i++)
+            if (!found[i])
+            {
+                reporter.printError("Cannot find option " + required[i]);
+                return false;
+            }
 
         return true;
     }
