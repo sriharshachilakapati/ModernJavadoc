@@ -1,0 +1,5 @@
+.gradle/
+build/
+doclettest/build/
+modernjavadoc/build/
+.idea/
