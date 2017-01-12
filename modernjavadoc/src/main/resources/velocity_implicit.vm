@@ -1,3 +1,6 @@
 #* @implicitly included *#
+#* @vtlvariable name="PackageWriter" type="com.shc.modernjavadoc.PackageWriter" file="templates/packages.html.vm" *#
+#* @vtlvariable name="urlBase" type="java.lang.String" *#
+#* @vtlvariable name="pkg" type="com.sun.tools.javadoc.PackageDocImpl" file="templates/package.html.vm" *#
 #* @vtlvariable name="pkgs" type="java.util.HashMap" file="../resources/templates/packages.html.vm" *#
 #* @vtlvariable name="windowTitle" type="java.lang.String" *#

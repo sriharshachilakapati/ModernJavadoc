@@ -1,6 +1,6 @@
 package com.shc.dummypackage;
 
-public class DummyClass3 extends DummyClass1
+public class DummyClass3 extends DummyClass1 implements Interface1
 {
     public static void methodStatic1()
     {
@@ -17,5 +17,16 @@ public class DummyClass3 extends DummyClass1
 
     public void method4(int a, boolean b)
     {
+    }
+
+    @Override
+    public void update()
+    {
+    }
+
+    @Override
+    public boolean render()
+    {
+        return false;
     }
 }

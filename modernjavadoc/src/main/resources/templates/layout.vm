@@ -3,11 +3,21 @@
 <html lang="en">
 <head>
     <title>$title - $windowTitle</title>
-    <link rel="stylesheet" href="moderndoc.css">
+    <link rel="stylesheet" href="$!{urlBase}moderndoc.css">
 </head>
 <body>
-<div class="container">
-    $!bodyContent
+<div class="javadoc">
+    <div class="sidebar">
+        <div class="container">
+            Sidebar
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            $!bodyContent
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -1,0 +1,32 @@
+#parse("layout.vm")
+
+#@layout("Package $pkg.name()")
+<h1>Package <code>$pkg.name()</code></h1>
+
+<div>
+    $pkg.commentText()
+</div>
+
+    #set ($classes = $pkg.allClasses())
+
+    #if ($classes.size() != 0)
+    <h2>Classes</h2>
+
+    <table>
+        <tr>
+            <th>Class</th>
+            <th>Description</th>
+        </tr>
+
+        #foreach ($class in $classes)
+            #if ($class.isOrdinaryClass())
+                <tr>
+                    <td class="col-first"><code>$class.simpleTypeName()</code></td>
+                    <td>$class.commentText()</td>
+                </tr>
+            #end
+        #end
+    </table>
+    #end
+
+#end

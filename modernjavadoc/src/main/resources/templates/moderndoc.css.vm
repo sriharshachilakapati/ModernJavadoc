@@ -1,12 +1,34 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.javadoc {
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    height: 100vh;
+}
+
+.sidebar {
+    flex-basis: 300px;
+    background-color: #dedede;
+}
+
+.content {
+    flex-grow: 1;
+    background-color: #f0f0f0;
+    font-size: 1.15em;
+}
+
 .container {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 30px;
 }
 
 table {
     width: 100%;
-    border: 0;
+    border: 1px solid #ccc;
     border-spacing: 0;
 }
 
@@ -25,4 +47,10 @@ tr:nth-of-type(odd) {
 
 .col-first {
     width: 25%;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #222;
 }

@@ -20,11 +20,14 @@ class PackagesWriter extends DocWriter
 
         for (ClassDoc cls : root.classes())
         {
-            String pkgName = cls.qualifiedName().replaceAll("\\." + cls.typeName(), "");
-            PackageDoc pkg = root.packageNamed(pkgName);
-
+            PackageDoc pkg = cls.containingPackage();
             packages.put(pkg.name(), pkg.commentText());
         }
+
+        for (String pkg : packages.keySet())
+            new PackageWriter(pkg, root).write();
+
+        velocityContext.put("PackageWriter", PackageWriter.class);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.shc.modernjavadoc;
 
 import com.sun.javadoc.DocErrorReporter;
 import com.sun.javadoc.Doclet;
+import com.sun.javadoc.LanguageVersion;
 import com.sun.javadoc.RootDoc;
 
 import java.io.File;
@@ -11,6 +12,22 @@ import java.io.File;
  */
 public class ModernDoclet extends Doclet
 {
+    static String getBaseURL(String fileName)
+    {
+        StringBuilder builder = new StringBuilder();
+
+        File outFile = new File(Configuration.DEST_DIR, fileName);
+        File parent;
+
+        while (!(parent = outFile.getParentFile()).getAbsolutePath().equals(Configuration.DEST_DIR.getAbsolutePath()))
+        {
+            outFile = parent;
+            builder.append("../");
+        }
+
+        return builder.toString();
+    }
+
     public static boolean start(RootDoc root)
     {
         readOptions(root.options());
@@ -84,5 +101,10 @@ public class ModernDoclet extends Doclet
         }
 
         return 0;
+    }
+
+    public static LanguageVersion languageVersion()
+    {
+        return LanguageVersion.JAVA_1_5;
     }
 }

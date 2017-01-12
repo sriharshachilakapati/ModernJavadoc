@@ -23,6 +23,7 @@ abstract class DocWriter
     DocWriter()
     {
         velocityEngine = new VelocityEngine();
+        velocityEngine.setProperty(RuntimeConstants.RUNTIME_REFERENCES_STRICT, true);
         velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
         velocityEngine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
         velocityEngine.setProperty(RuntimeConstants.EVENTHANDLER_INCLUDE, IncludeRelativePath.class.getName());
@@ -38,6 +39,7 @@ abstract class DocWriter
     void write()
     {
         String template = getTemplate();
+        velocityContext.put("urlBase", ModernDoclet.getBaseURL(outFileName));
 
         File output = new File(Configuration.DEST_DIR, outFileName);
         output.getParentFile().mkdirs();
