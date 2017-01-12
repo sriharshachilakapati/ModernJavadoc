@@ -1,0 +1,3 @@
+#* @implicitly included *#
+#* @vtlvariable name="pkgs" type="java.util.HashMap" file="../resources/templates/packages.html.vm" *#
+#* @vtlvariable name="windowTitle" type="java.lang.String" *#

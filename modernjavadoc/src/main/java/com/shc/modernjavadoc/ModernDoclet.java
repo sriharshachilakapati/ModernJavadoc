@@ -15,6 +15,9 @@ public class ModernDoclet extends Doclet
     {
         readOptions(root.options());
 
+        new PackagesWriter(root).write();
+        new SimpleFileWriter("templates/moderndoc.css.vm", "moderndoc.css").write();
+
         return true;
     }
 

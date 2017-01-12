@@ -1,0 +1,18 @@
+#parse("layout.vm")
+
+#@layout("Packages")
+    <h1>Packages</h1>
+
+    <table>
+        <tr>
+            <th>Package</th>
+            <th>Description</th>
+        </tr>
+        #foreach ($pkg in $pkgs.keySet())
+            <tr>
+                <td class="col-first">$pkg</td>
+                <td>$pkgs.get($pkg)</td>
+            </tr>
+        #end
+    </table>
+#end

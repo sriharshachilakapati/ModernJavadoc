@@ -3,9 +3,12 @@
 <html lang="en">
 <head>
     <title>$title - $windowTitle</title>
+    <link rel="stylesheet" href="moderndoc.css">
 </head>
 <body>
+<div class="container">
     $!bodyContent
+</div>
 </body>
 </html>
 #end
